@@ -36,6 +36,7 @@
   function setStored(key, value){
     try{
       localStorage.setItem(key, JSON.stringify(value));
+      console.log("✓ Saved to localStorage:", key, value);
     }catch(e){
       console.error("Storage error", e);
     }
@@ -304,7 +305,7 @@
     // long data URL and isn't meant to be hand-edited as text.
     document.getElementById("f-url").value = (item.imageUrl && item.imageUrl.indexOf("data:") !== 0) ? item.imageUrl : "";
     document.getElementById("f-file").value = "";
-    document.getElementById("add-form-title").textContent = "Editing" + item.name + "";
+    document.getElementById("add-form-title").textContent = "Editing \"" + item.name + "\"";
     document.getElementById("save-item-btn").textContent = "Update item";
     document.getElementById("cancel-edit-btn").style.display = "inline-block";
     refreshPreview();
@@ -682,6 +683,7 @@
     state.items = items || [];
     state.fits = fits || [];
     state.loaded = true;
+    console.log("Initialized with", state.items.length, "items and", state.fits.length, "fits");
     renderAll();
   }
 
